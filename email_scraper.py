@@ -32,7 +32,7 @@ while len(unscraped):
     except (requests.exceptions.MissingSchema, requests.exceptions.ConnectionError):
         continue
 
-    new_emails = set(re.findall(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.com", response.text, re.I))
+    new_emails = set(re.findall(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b", response.text, re.I))
     emails.update(new_emails)
 
     soup = BeautifulSoup(response.text, 'lxml')
